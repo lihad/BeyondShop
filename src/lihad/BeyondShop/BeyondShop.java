@@ -80,7 +80,9 @@ public class BeyondShop extends JavaPlugin implements Listener {
 		if(cmd.getName().equalsIgnoreCase("bshop")){
 			if(args.length == 1){
 				if(args[0].equalsIgnoreCase("buy")){
+					info(player.getName()+" is attempting to purchase a shop");
 					Iterator<ProtectedRegion> ir = wg.getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation()).iterator();
+					info(player.getName()+" has found "+wg.getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation()).size()+" regions");
 					while(ir.hasNext()){
 						ProtectedRegion region = ir.next();
 						if(region.getTypeName().contains("shop")){
@@ -98,7 +100,7 @@ public class BeyondShop extends JavaPlugin implements Listener {
 							}
 							break;
 						}else{
-							//player.sendMessage(ChatColor.RED+"there is no region here able to be purchased");
+							info("found unsable region - "+region.getTypeName());
 						}
 					}
 				}else if(args[0].equalsIgnoreCase("release")){
