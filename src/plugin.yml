@@ -1,0 +1,7 @@
+name: BeyondShop
+main: lihad.BeyondShop.BeyondShop
+version: 1.0
+commands:
+  bshop:
+    description: Invalid Command
+    usage: Invalid Command
