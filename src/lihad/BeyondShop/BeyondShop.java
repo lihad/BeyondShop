@@ -85,13 +85,13 @@ public class BeyondShop extends JavaPlugin implements Listener {
 					info(player.getName()+" has found "+wg.getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation()).size()+" regions");
 					while(ir.hasNext()){
 						ProtectedRegion region = ir.next();
-						if(region.getTypeName().contains("shop")){
+						if(region.getId().contains("shop")){
 							if(region.getMembers().size() == 0){
 								if(econ.bankBalance(player.getName()).balance >= region_cost){
 									DefaultDomain d = region.getMembers();
 									d.addPlayer(player.getName());
 									region.setMembers(d);
-									player.sendMessage(ChatColor.GREEN+"you now own "+region.getTypeName()+"! the amount of "+region_cost+" will be automatically deducted from your account every day");
+									player.sendMessage(ChatColor.GREEN+"you now own "+region.getId()+"! the amount of "+region_cost+" will be automatically deducted from your account every day");
 								}else{
 									player.sendMessage(ChatColor.RED+"this region costs "+region_cost+" to purchase, which is money you don't have");
 								}
@@ -100,26 +100,26 @@ public class BeyondShop extends JavaPlugin implements Listener {
 							}
 							break;
 						}else{
-							info("found unsable region - "+region.getTypeName());
+							info("found unsable region - "+region.getId());
 						}
 					}
 				}else if(args[0].equalsIgnoreCase("release")){
 					Iterator<ProtectedRegion> ir = wg.getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation()).iterator();
 					while(ir.hasNext()){
 						ProtectedRegion region = ir.next();
-						if(region.getTypeName().contains("shop")){
+						if(region.getId().contains("shop")){
 							if(region.getMembers().contains(player.getName())){
 								DefaultDomain d = region.getMembers();
 								d.removePlayer(player.getName());
 								region.setMembers(d);
-								player.sendMessage(ChatColor.GREEN+"you have released "+region.getTypeName()+"!");
+								player.sendMessage(ChatColor.GREEN+"you have released "+region.getId()+"!");
 
 							}else{
 								player.sendMessage(ChatColor.RED+"you can not release a shop you do not own");
 							}
 							break;
 						}else{
-							//player.sendMessage(ChatColor.RED+"there is no region here able to be released");
+							info("found unsable region - "+region.getId());
 						}
 					}
 				}
